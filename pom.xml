@@ -22,11 +22,18 @@
                              http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.wso2.org.apache.lucene-solr</groupId>
+  <groupId>org.apache.lucene-solr</groupId>
   <artifactId>wso2-lucene-solr-parent</artifactId>
   <version>${version}</version>
   <packaging>pom</packaging>
   <name>WSO2 Lucene / Solr fork</name>
+
+  <scm>
+    <url>https://github.com/wso2/wso2-lucene-solr.git</url>
+    <developerConnection>scm:git:https://github.com/wso2/wso2-lucene-solr.git</developerConnection>
+    <connection>scm:git:https://github.com/wso2/wso2-lucene-solr.git</connection>
+    <tag>HEAD</tag>
+  </scm>
 
   <build>
     <plugins>
@@ -111,7 +118,7 @@
             <goals><goal>install-file</goal></goals>
             <configuration>
               <file>${project.basedir}/solr/build/solr-core/solr-core-${version}.jar</file>
-              <groupId>org.wso2.org.apache.solr</groupId>
+              <groupId>org.apache.solr</groupId>
               <artifactId>solr-core</artifactId>
               <version>${version}</version>
               <packaging>jar</packaging>
@@ -124,7 +131,7 @@
             <goals><goal>install-file</goal></goals>
             <configuration>
               <file>${project.basedir}/solr/build/solr-solrj/solr-solrj-${version}.jar</file>
-              <groupId>org.wso2.org.apache.solr</groupId>
+              <groupId>org.apache.solr</groupId>
               <artifactId>solr-solrj</artifactId>
               <version>${version}</version>
               <packaging>jar</packaging>
