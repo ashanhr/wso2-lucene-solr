@@ -144,6 +144,6 @@
   </build>
 
   <properties>
-    <version>8.11.4-wso2v1</version>
+    <version>8.11.4-wso2v1-SNAPSHOT</version>
   </properties>
 </project>
