@@ -145,20 +145,24 @@ public class TestHdfsBackupRestoreCore extends SolrCloudTestCase {
 
   @AfterClass
   public static void teardownClass() throws Exception {
-    IOUtils.closeQuietly(fs);
-    fs = null;
     try {
-      SolrTestCaseJ4.resetFactory();
+      SolrCloudTestCase.shutdownCluster();
     } finally {
-      try {
-        HdfsTestUtil.teardownClass(dfsCluster);
-      } finally {
-        dfsCluster = null;
-        System.clearProperty("solr.hdfs.home");
-        System.clearProperty("solr.hdfs.default.backup.path");
-        System.clearProperty("test.build.data");
-        System.clearProperty("test.cache.data");
-      }
+        IOUtils.closeQuietly(fs);
+        fs = null;
+        try {
+            SolrTestCaseJ4.resetFactory();
+        } finally {
+            try {
+                HdfsTestUtil.teardownClass(dfsCluster);
+            } finally {
+                dfsCluster = null;
+                System.clearProperty("solr.hdfs.home");
+                System.clearProperty("solr.hdfs.default.backup.path");
+                System.clearProperty("test.build.data");
+                System.clearProperty("test.cache.data");
+            }
+        }
     }
   }
 
