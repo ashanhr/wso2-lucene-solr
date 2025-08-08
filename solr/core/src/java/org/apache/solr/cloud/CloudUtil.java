@@ -186,6 +186,35 @@ public class CloudUtil {
    * This is a convenience method using the {@link #DEFAULT_TIMEOUT}
    *
    * @param cloudManager current instance of {@link SolrCloudManager}
+   * @param message     a message to report on failure
+   * @param wait        timeout value
+   * @param collection  the collection to watch
+   * @param predicate   a predicate to match against the collection state
+   */
+  public static long waitForState(final SolrCloudManager cloudManager,
+                                  final String message,
+                                  long wait,
+                                  final String collection,
+                                  final CollectionStatePredicate predicate) {
+    AtomicReference<DocCollection> state = new AtomicReference<>();
+    AtomicReference<Set<String>> liveNodesLastSeen = new AtomicReference<>();
+    try {
+      return waitForState(cloudManager, collection, wait, TimeUnit.SECONDS, (n, c) -> {
+        state.set(c);
+        liveNodesLastSeen.set(n);
+        return predicate.matches(n, c);
+      });
+    } catch (Exception e) {
+      throw new AssertionError(message + "\n" + "Live Nodes: " + liveNodesLastSeen.get() + "\nLast available state: " + state.get(), e);
+    }
+  }
+
+  /**
+   * Wait for a particular collection state to appear.
+   *
+   * This is a convenience method using the {@link #DEFAULT_TIMEOUT}
+   *
+   * @param cloudManager current instance of {@link SolrCloudManager}
    * @param collection  the collection to watch
    * @param wait timeout value
    * @param unit timeout unit
