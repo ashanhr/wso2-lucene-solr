@@ -101,22 +101,26 @@ public class MetricsHistoryHandlerTest extends SolrCloudTestCase {
         .setPerReplicaState(SolrCloudTestCase.USE_PER_REPLICA_STATE);
     create.process(solrClient);
     CloudUtil.waitForState(cloudManager, "failed to create " + CollectionAdminParams.SYSTEM_COLL,
-        CollectionAdminParams.SYSTEM_COLL, CloudUtil.clusterShape(1, 1));
+        CollectionAdminParams.SYSTEM_COLL, 90, TimeUnit.SECONDS, CloudUtil.clusterShape(1, 1));
   }
 
   @AfterClass
   public static void teardown() throws Exception {
-    if (handler != null) {
-      handler.close();
+    try {
+      shutdownCluster();
+    } finally {
+      if (handler != null) {
+        handler.close();
+      }
+      if (simulated && cloudManager != null) {
+        cloudManager.close();
+      }
+      handler = null;
+      metricsHandler = null;
+      cloudManager = null;
+      metricManager = null;
+      solrClient = null;
     }
-    if (simulated) {
-      cloudManager.close();
-    }
-    handler = null;
-    metricsHandler = null;
-    cloudManager = null;
-    metricManager = null;
-    solrClient = null;
   }
 
   @Test
