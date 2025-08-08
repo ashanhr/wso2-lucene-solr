@@ -34,3 +34,5 @@ gradle.properties
 gradle/
 gradlew
 gradlew.bat
+target/
+lucene-solr-parent.iml
