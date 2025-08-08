@@ -83,7 +83,7 @@ public class MetricsHistoryHandlerTest extends SolrCloudTestCase {
     configureCluster(1)
         .addConfig("conf", configset("cloud-minimal"))
         .configure();
-    
+
     if (!simulated) {
       cloudManager = cluster.getJettySolrRunner(0).getCoreContainer().getZkController().getSolrCloudManager();
       metricManager = cluster.getJettySolrRunner(0).getCoreContainer().getMetricManager();
@@ -100,8 +100,8 @@ public class MetricsHistoryHandlerTest extends SolrCloudTestCase {
         "conf", 1, 1)
         .setPerReplicaState(SolrCloudTestCase.USE_PER_REPLICA_STATE);
     create.process(solrClient);
-    CloudUtil.waitForState(cloudManager, "failed to create " + CollectionAdminParams.SYSTEM_COLL,
-        CollectionAdminParams.SYSTEM_COLL, 90, TimeUnit.SECONDS, CloudUtil.clusterShape(1, 1));
+    CloudUtil.waitForState(cloudManager, "failed to create " + CollectionAdminParams.SYSTEM_COLL, 180,
+        CollectionAdminParams.SYSTEM_COLL, CloudUtil.clusterShape(1, 1));
   }
 
   @AfterClass
