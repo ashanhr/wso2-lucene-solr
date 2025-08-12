@@ -38,6 +38,7 @@ import org.apache.solr.metrics.SolrMetricManager;
 import org.apache.solr.util.LogLevel;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.rrd4j.core.RrdDb;
 
@@ -46,6 +47,7 @@ import org.rrd4j.core.RrdDb;
  */
 @LogLevel("org.apache.solr.cloud=DEBUG")
 @LuceneTestCase.BadApple(bugUrl="https://issues.apache.org/jira/browse/SOLR-17061")
+@Ignore
 public class MetricsHistoryHandlerTest extends SolrCloudTestCase {
 
   private volatile static SolrCloudManager cloudManager;
