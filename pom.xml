@@ -28,7 +28,7 @@
   </parent>
   <groupId>org.apache.lucene-solr</groupId>
   <artifactId>lucene-solr-parent</artifactId>
-  <version>${version}</version>
+  <version>8.11.4-wso2v1-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>WSO2 Lucene / Solr fork</name>
 
@@ -148,6 +148,6 @@
   </build>
 
   <properties>
-    <version>8.11.4-wso2v1-SNAPSHOT</version>
+    <version>${project.version}</version>
   </properties>
 </project>
