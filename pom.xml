@@ -121,10 +121,10 @@
             <phase>install</phase>
             <goals><goal>install-file</goal></goals>
             <configuration>
-              <file>${project.basedir}/solr/build/solr-core/solr-core-${version}.jar</file>
+              <file>${project.basedir}/solr/build/solr-core/solr-core-${project.version}.jar</file>
               <groupId>org.apache.solr</groupId>
               <artifactId>solr-core</artifactId>
-              <version>${version}</version>
+              <version>${project.version}</version>
               <packaging>jar</packaging>
             </configuration>
           </execution>
@@ -134,10 +134,10 @@
             <phase>install</phase>
             <goals><goal>install-file</goal></goals>
             <configuration>
-              <file>${project.basedir}/solr/build/solr-solrj/solr-solrj-${version}.jar</file>
+              <file>${project.basedir}/solr/build/solr-solrj/solr-solrj-${project.version}.jar</file>
               <groupId>org.apache.solr</groupId>
               <artifactId>solr-solrj</artifactId>
-              <version>${version}</version>
+              <version>${project.version}</version>
               <packaging>jar</packaging>
             </configuration>
           </execution>
