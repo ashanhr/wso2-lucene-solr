@@ -139,29 +139,35 @@
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-install-plugin</artifactId>
+        <artifactId>maven-deploy-plugin</artifactId>
         <version>3.1.1</version>
-
         <executions>
           <execution>
-            <id>install-solr-core</id>
-            <phase>install</phase>
-            <goals><goal>install-file</goal></goals>
+            <id>deploy-solr-core</id>
+            <phase>deploy</phase>
+            <goals>
+              <goal>deploy-file</goal>
+            </goals>
             <configuration>
               <file>${project.basedir}/solr/build/solr-core/solr-core-${project.version}.jar</file>
+              <repositoryId>wso2.releases</repositoryId>
+              <url>${project.distributionManagement.repository.url}</url>
               <groupId>org.apache.solr</groupId>
               <artifactId>solr-core</artifactId>
               <version>${project.version}</version>
               <packaging>jar</packaging>
             </configuration>
           </execution>
-
           <execution>
-            <id>install-solr-solrj</id>
-            <phase>install</phase>
-            <goals><goal>install-file</goal></goals>
+            <id>deploy-solr-solrj</id>
+            <phase>deploy</phase>
+            <goals>
+              <goal>deploy-file</goal>
+            </goals>
             <configuration>
               <file>${project.basedir}/solr/build/solr-solrj/solr-solrj-${project.version}.jar</file>
+              <repositoryId>wso2.releases</repositoryId>
+              <url>${project.distributionManagement.repository.url}</url>
               <groupId>org.apache.solr</groupId>
               <artifactId>solr-solrj</artifactId>
               <version>${project.version}</version>
